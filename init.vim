@@ -204,6 +204,7 @@ let g:neomake_list_height=7
 
 " fugitive
 
+nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gc :Gcommit<CR>
 nmap <Leader>gC :Gcommit -a<CR>
 nmap <Leader>ga :Git add %<CR>

@@ -1,0 +1,2 @@
+pdf|pdf --highlight-style=zenburn --latex-engine=pdflatex --filter=/home/andrew/.vim/bin/pandoc-include
+slidy|slidy --self-contained --smart --filter=/home/andrew/.vim/bin/pandoc-include

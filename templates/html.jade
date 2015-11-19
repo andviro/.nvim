@@ -1,0 +1,8 @@
+div
+  div
+    ol.breadcrumb(if="{!linkActive('app.XXX.@NAME@.list')}")
+      li
+        a(href="{makePath('app.XXX.@NAME@.list')}") Назад к списку
+      li.active(if="{linkActive('app.XXX.@NAME@.detail')}") Просмотр
+  div
+    ui-view

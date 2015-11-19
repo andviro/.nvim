@@ -14,6 +14,7 @@ call plug#begin()
     Plug 'kien/ctrlp.vim'
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'simnalamburt/vim-mundo'
+    Plug 'jiangmiao/auto-pairs'
 
     " snippets
     Plug 'sirver/ultisnips'
@@ -200,3 +201,11 @@ nmap <leader>b :<C-u>silent wa<CR>:Neomake!<CR>
 let g:neomake_open_list=1
 let g:neomake_place_signs=1
 let g:neomake_list_height=7
+
+" fugitive
+
+nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gC :Gcommit -a<CR>
+nmap <Leader>ga :Git add %<CR>
+nmap <Leader>gp :Gpush --all<CR>
+nmap <Leader>gu :Gpull<CR>

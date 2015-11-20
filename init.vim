@@ -14,7 +14,7 @@ call plug#begin()
     Plug 'kien/ctrlp.vim'
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'simnalamburt/vim-mundo'
-    Plug 'jiangmiao/auto-pairs'
+    Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
 
     " snippets

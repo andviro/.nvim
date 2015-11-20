@@ -43,6 +43,7 @@ call plug#begin()
     Plug 'digitaltoad/vim-jade'
     Plug 'stephpy/vim-yaml'
     Plug 'chase/vim-ansible-yaml'
+    Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 " general settings
@@ -64,7 +65,7 @@ set splitbelow
 set noequalalways
 set helpheight=10
 set whichwrap=<,>,h,l
-set listchars=tab:>-,eol:·,nbsp:~
+set listchars=tab:\ \ ,eol:·,nbsp:~
 set completeopt-=preview
 set list
 set number
@@ -76,6 +77,9 @@ set wildignore+=*.haux,*.htoc,*.image.tex,*.pyc,*.out,*\\,v
 set wildignore+=*.bbl,*.blg,*.out
 set wildignore+=.git,.hg,*.svn
 set wildignore+=*.sqlite
+
+set tabstop=4 shiftwidth=4 expandtab
+set cursorline
 colorscheme solarized
 let mapleader = ";"
 
@@ -102,6 +106,34 @@ cnoremap <C-N>      <Down>
 cnoremap <C-P>      <Up>
 cnoremap <Esc><C-B> <S-Left>
 cnoremap <Esc><C-F> <S-Right>
+
+" utility functions
+fun! init#restore_cursor() 
+    if line("'\"") <= line("$")
+        silent! normal! g`"
+        return 1
+    endif
+endfunction 
+
+" autocommands
+augroup vimrc
+au!
+    " usability
+    au QuickfixCmdPost make :cwin 5
+    au BufWinEnter * call init#restore_cursor()
+    au FocusLost * if &modifiable && &modified | write | endif
+    au CursorMovedI * if pumvisible() == 0|pclose|endif 
+    au InsertLeave * if pumvisible() == 0|pclose|endif
+    au BufEnter * silent! lcd <afile>:p:h
+
+    " filetype-specific
+    au BufNewFile,BufRead *.json setf javascript
+    au BufNewFile,BufRead *.j2 setlocal ft=jinja
+    au BufNewFile,BufRead *.tag setlocal ft=html
+    au BufRead,BufNewFile *.txt setlocal ft=asciidoc
+    au BufRead *.hva setlocal ft=tex
+    au BufWrite *.html :Autoformat
+augroup END"}}}
 
 " coffeescript
 let g:coffee_lint_options = '-f ' . $HOME . '/.vim/coffeelint.json'

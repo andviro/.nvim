@@ -1,4 +1,4 @@
-setlocal nolist nonumber
+setlocal ts=4 sw=4 list noet
 nmap <buffer> K <Plug>(go-doc)
 nmap <buffer> <leader>r <Plug>(go-run)
 nmap <buffer> <leader>l :<C-u>Neomake! go_lint<CR>

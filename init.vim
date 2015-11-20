@@ -49,6 +49,9 @@ call plug#end()
 " general settings
 set background=dark
 set backupdir-=.
+if finddir(&backupdir) == ''
+    silent call mkdir(&backupdir, "p")
+endif
 set clipboard+=unnamedplus
 set incsearch
 set undofile

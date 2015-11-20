@@ -57,7 +57,6 @@ set ignorecase
 set autoread
 set autowrite
 set nohlsearch
-set spelllang=ru,en
 set hidden
 set infercase
 set nostartofline
@@ -78,10 +77,28 @@ set wildignore+=*.bbl,*.blg,*.out
 set wildignore+=.git,.hg,*.svn
 set wildignore+=*.sqlite
 
+" i18n
+set spelllang=ru,en
+set keymap=russian-yawerty
+set iminsert=0
+set imsearch=-1
+
 set tabstop=4 shiftwidth=4 expandtab
 set cursorline
 colorscheme solarized
 let mapleader = ";"
+
+" IM switch
+imap <C-\> <C-^>
+imap <C-_> <C-^>
+imap <C-Space> <C-^>
+cmap <C-\> <C-^>
+cmap <C-_> <C-^>
+cmap <C-Space> <C-^>
+nmap <silent> <C-\> :let &l:iminsert = !&l:iminsert<CR>
+nmap <silent> <C-/> :let &l:iminsert = !&l:iminsert<CR>
+nmap <silent> <C-_> :let &l:iminsert = !&l:iminsert<CR>
+nmap <silent> <C-Space> :let &l:iminsert = !&l:iminsert<CR>
 
 " general key bindings
 nmap <silent> <C-H> :bp<CR>
@@ -95,6 +112,12 @@ nmap <S-L> <C-I>
 nnoremap <silent> <C-j> :tabnext<CR>
 nnoremap <silent> <C-k> :tabprevious<CR>
 
+" Neovim terminal
+if has("nvim")
+    tnoremap <Esc> <C-\><C-n>
+endif
+
+" emacs-like insert mode
 cnoremap <C-A>      <Home>
 cnoremap <C-B>      <Left>
 inoremap <C-B>      <Left>

@@ -15,16 +15,18 @@ call plug#begin()
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'simnalamburt/vim-mundo'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'terryma/vim-multiple-cursors'
 
     " snippets
     Plug 'sirver/ultisnips'
     Plug 'honza/vim-snippets'
     Plug 'noahfrederick/vim-skeleton'
 
-    " git
+    " VCS
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-git'
+    Plug 'phleet/vim-mercenary'
 
     " devel
     Plug 'fatih/vim-go'
@@ -44,6 +46,7 @@ call plug#begin()
     Plug 'stephpy/vim-yaml'
     Plug 'chase/vim-ansible-yaml'
     Plug 'Chiel92/vim-autoformat'
+    Plug 'rdnetto/YCM-Generator', {'branch' : 'stable'}
 call plug#end()
 
 " general settings

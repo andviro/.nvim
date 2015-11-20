@@ -263,5 +263,5 @@ nmap <silent> <Leader>gs :Gstatus<CR>
 nmap <silent> <Leader>gc :Gcommit<CR>
 nmap <silent> <Leader>gC :Gcommit -a<CR>
 nmap <silent> <Leader>ga :Git add %<CR>
-nmap <silent> <Leader>gp :Gpush --all<CR>
-nmap <silent> <Leader>gu :Gpull<CR>
+nmap <silent> <Leader>gp :Git push --all<CR>
+nmap <silent> <Leader>gu :Git pull<CR>

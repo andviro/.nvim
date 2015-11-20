@@ -1,13 +1,14 @@
 " vim: sw=4 ts=4 et
+scriptencoding utf-8
 call plug#begin()
     " system
-    Plug 'tpope/vim-sensible'
     Plug 's3rvac/AutoFenc'
     Plug 'benekastah/neomake'
 
     " appearance
-    Plug 'altercation/vim-colors-solarized'
+    Plug 'andviro/vim-colors-solarized'
     Plug 'bling/vim-airline'
+    Plug 'wincent/terminus'
 
     " usability
     Plug 'scrooloose/nerdcommenter'
@@ -49,33 +50,33 @@ call plug#begin()
     Plug 'rdnetto/YCM-Generator', {'branch' : 'stable'}
 call plug#end()
 
-" general settings
-set background=dark
+" system
+"
+if has('autocmd')
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+
+set clipboard+=unnamedplus
 set backupdir-=.
 if finddir(&backupdir) == ''
     silent call mkdir(&backupdir, "p")
 endif
-set clipboard+=unnamedplus
-set incsearch
 set undofile
-set smartcase
-set ignorecase
 set autoread
 set autowrite
-set nohlsearch
 set hidden
-set infercase
-set nostartofline
-set splitbelow
-set noequalalways
-set helpheight=10
-set whichwrap=<,>,h,l
-set listchars=tab:\ \ ,eol:·,nbsp:~
-set completeopt-=preview
-set list
-set number
 set backup
-set nowildmenu
+set viewoptions=cursor,folds,slash,unix
+set title
+set history=1000
+set tabpagemax=50
+set viminfo^=!
+set sessionoptions-=options
+
+" files
 set wildignore+=RCS,CVS,*~,*.aux,*.bak,*.dvi,*.toc
 set wildignore+=*.idx,*.log,*.swp,*.tar,*.o,*.cm?,*.d
 set wildignore+=*.haux,*.htoc,*.image.tex,*.pyc,*.out,*\\,v
@@ -83,16 +84,69 @@ set wildignore+=*.bbl,*.blg,*.out
 set wildignore+=.git,.hg,*.svn
 set wildignore+=*.sqlite
 
+" search
+set smartcase
+set ignorecase
+set incsearch
+set nohlsearch
+set infercase
+
+"navigation
+set scrolloff=3
+set nostartofline
+set cursorline
+
+
+" editing
+set whichwrap=<,>,h,l
+set nowrap
+set listchars=tab:\ \ ,eol:·,nbsp:~
+set list
+set number
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set virtualedit=block
+set autoindent
+set smartindent
+set backspace=indent,eol,start
+set complete-=i
+set nrformats-=octal
+set formatoptions+=j " Delete comment character when joining commented lines
+let mapleader = ";"
+
+" windows
+set splitbelow
+set noequalalways
+set helpheight=10
+set nowildmenu
+set completeopt-=preview
+
 " i18n
+set fileencodings=utf-8,cp1251,koi8-r
 set spelllang=ru,en
 set keymap=russian-yawerty
 set iminsert=0
 set imsearch=-1
 
-set tabstop=4 shiftwidth=4 expandtab
-set cursorline
+" appearance
+set laststatus=2
+set ruler
+set showcmd
+set wildmenu
+set background=dark
+set display+=lastline
+let g:solarized_termcolors = 16
+let g:solarized_visibility = "normal"
+let g:solarized_contrast = "high"
 colorscheme solarized
-let mapleader = ";"
+highlight NonText cterm=none
+"
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
 
 " IM switch
 imap <C-\> <C-^>

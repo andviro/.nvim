@@ -101,8 +101,9 @@ set cursorline
 set whichwrap=<,>,h,l
 set nowrap
 
+set listchars=tab:\|\ ,eol:·,nbsp:~
 "set listchars=tab:❘\ ,eol:·,nbsp:~
-set listchars=tab:⋮\ ,eol:·,nbsp:~
+"set listchars=tab:⋮\ ,eol:·,nbsp:~
 set list
 set number
 set tabstop=4
@@ -140,11 +141,11 @@ set wildmenu
 set background=dark
 set display+=lastline
 let g:solarized_termcolors = 16
-let g:solarized_visibility = "normal"
-let g:solarized_contrast = "high"
+let g:solarized_visibility = "low"
+let g:solarized_contrast = "normal"
 colorscheme solarized
-highlight NonText cterm=none ctermbg=none ctermfg=23
-highlight SpecialKey cterm=none ctermbg=none ctermfg=23
+"highlight NonText cterm=none ctermbg=none ctermfg=23
+"highlight SpecialKey cterm=none ctermbg=none ctermfg=23
 "
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''

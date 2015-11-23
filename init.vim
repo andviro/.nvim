@@ -33,6 +33,7 @@ call plug#begin()
     Plug 'fatih/vim-go'
     Plug 'andviro/flake8-vim'
     Plug 'davidhalter/jedi-vim'
+    Plug 'kchmck/vim-coffee-script'
     Plug 'elzr/vim-json'
     Plug 'hynek/vim-python-pep8-indent'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }

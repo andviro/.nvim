@@ -207,7 +207,7 @@ endfunction
 augroup vimrc
 au!
     " usability
-    au QuickfixCmdPost make :cwin 5
+    au QuickfixCmdPost make,grep :cwin 5
     au BufWinEnter * call init#restore_cursor()
     au FocusLost * if &modifiable && &modified | write | endif
     au CursorMovedI * if pumvisible() == 0|pclose|endif 
@@ -331,3 +331,7 @@ nmap <silent> <Leader>gC :Gcommit -a<CR>
 nmap <silent> <Leader>ga :Git add %<CR>
 nmap <silent> <Leader>gp :Git push --all<CR>
 nmap <silent> <Leader>gu :Git pull<CR>
+
+" NERDTree
+
+nnoremap <silent> <Leader><Tab> :NERDTreeToggle<CR>

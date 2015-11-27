@@ -307,7 +307,8 @@ let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 let g:ycm_autoclose_preview_window_after_completion = 1
 inoremap <expr><c-j>  pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr><c-k>  pumvisible() ? "\<C-p>" : "\<C-k>"
-nnoremap <silent> <Leader><CR> :YcmCompleter GoTo<CR>
+"nnoremap <silent> <CR> :YcmCompleter GoTo<CR>
+"nnoremap <silent> K :YcmCompleter GetDoc<CR>
 let g:UltiSnipsExpandTrigger="<C-L>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"

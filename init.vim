@@ -270,15 +270,13 @@ let g:ctrlp_by_filename = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_reuse_window = 'netrw\|quickfix'
 let g:ctrlp_extensions = ['session']
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:50'
 let g:ctrlp_custom_ignore = {
 \ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules)$'
 \ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
 if executable("ag")
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-else
-    let g:ctrlp_user_command = 'find %s -type f'
 endif
 
 

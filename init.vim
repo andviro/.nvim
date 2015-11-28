@@ -12,7 +12,8 @@ call plug#begin()
 
     " usability
     Plug 'scrooloose/nerdcommenter'
-    Plug 'kien/ctrlp.vim'
+    "Plug 'kien/ctrlp.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
@@ -331,6 +332,10 @@ nmap <silent> <Leader>gC :Gcommit -a<CR>
 nmap <silent> <Leader>ga :Git add %<CR>
 nmap <silent> <Leader>gp :Git push --all<CR>
 nmap <silent> <Leader>gu :Git pull<CR>
+
+" FZF
+
+nnoremap <C-P> :<C-u>FZF<CR>
 
 " NERDTree
 

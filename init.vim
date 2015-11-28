@@ -12,7 +12,7 @@ call plug#begin()
 
     " usability
     Plug 'scrooloose/nerdcommenter'
-    Plug 'kien/ctrlp.vim'
+    Plug 'Shougo/unite.vim'
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
@@ -252,7 +252,6 @@ let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#tagbar#flags = 's'
 let g:airline#extensions#bufferline#enabled = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#ctrlp#show_adjacent_modes = 1
 let g:airline_detect_iminsert=1
 nmap <leader>1 1gt
 nmap <leader>2 2gt
@@ -263,24 +262,6 @@ nmap <leader>6 6gt
 nmap <leader>7 7gt
 nmap <leader>8 8gt
 nmap <leader>9 9gt
-
-" ctrlp
-let g:ctrlp_key_loop = 1
-let g:ctrlp_by_filename = 0
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_reuse_window = 'netrw\|quickfix'
-let g:ctrlp_extensions = ['session']
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = {
-\ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules)$'
-\ }
-let g:ctrlp_cmd = 'CtrlPLastMode'
-if executable("ag")
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-else
-    let g:ctrlp_user_command = 'find %s -type f'
-endif
-
 
 " vim-skeleton
 let g:skeleton_replacements = {}
@@ -307,14 +288,12 @@ let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 let g:ycm_autoclose_preview_window_after_completion = 1
 inoremap <expr><c-j>  pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr><c-k>  pumvisible() ? "\<C-p>" : "\<C-k>"
-"nnoremap <silent> <CR> :YcmCompleter GoTo<CR>
-"nnoremap <silent> K :YcmCompleter GetDoc<CR>
 let g:UltiSnipsExpandTrigger="<C-L>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:UltiSnipsListSnippets="<c-h>"
 
-" [GM]undo
+" G(M)undo
 map <Leader>u :GundoToggle<CR>
 
 " neomake
@@ -323,15 +302,53 @@ let g:neomake_open_list=1
 let g:neomake_place_signs=1
 let g:neomake_list_height=7
 
-" fugitive
-
-nmap <silent> <Leader>gs :Gstatus<CR>
-nmap <silent> <Leader>gc :Gcommit<CR>
-nmap <silent> <Leader>gC :Gcommit -a<CR>
-nmap <silent> <Leader>ga :Git add %<CR>
-nmap <silent> <Leader>gp :Git push --all<CR>
-nmap <silent> <Leader>gu :Git pull<CR>
-
 " NERDTree
 
 nnoremap <silent> <Leader><Tab> :NERDTreeToggle<CR>
+
+" Unite
+let g:unite_source_session_enable_auto_save = 1
+let g:unite_source_history_yank_enable = 1
+let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_selecta'])
+call unite#custom#profile('default', 'context', {
+  \ 'winheight': 12,
+  \ 'direction': 'botright',
+  \ 'prompt_direction': 'top'
+  \ })
+nnoremap <silent><C-p> :<C-u>UniteWithProjectDir -buffer-name=files -start-insert buffer file_rec/neovim<CR>
+
+autocmd FileType unite call <SID>setupUnite()
+function! s:setupUnite()
+    " Play nice with supertab
+    let b:SuperTabDisabled=1
+    " Enable navigation with control-j and control-k in insert mode
+    map <buffer> <ESC>   <Plug>(unite_exit)
+    imap <buffer> <ESC>   <Plug>(unite_exit)
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
+" fugitive
+let g:unite_source_menu_menus = {}
+let g:unite_source_menu_menus.fugitive = {
+    \     'description' : 'fugitive menu',
+    \ }
+let g:unite_source_menu_menus.fugitive.candidates = {
+    \       'status' : 'Gstatus',
+    \       'commit' : 'Gcommit',
+    \       'commit -a' : 'Gcommit -a',
+    \       'hist' : 'Git hist',
+    \       'push' : 'Git push --all',
+    \       'pull' : 'Git pull',
+    \     }
+
+function g:unite_source_menu_menus.fugitive.map(key, value)
+return {
+        \       'word' : a:key, 'kind' : 'command',
+        \       'action__command' : a:value,
+        \     }
+endfunction
+nnoremap <silent> <Leader>g :<C-u>Unite -start-insert menu:fugitive<CR>
+

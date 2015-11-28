@@ -245,26 +245,20 @@ let g:NERDCustomDelimiters = {
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline#extensions#whitespace#enabled = 0
-"let g:airline#extensions#ctrlp#color_template = 'normal'
-let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#tagbar#flags = 's'
-let g:airline#extensions#bufferline#enabled = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#ctrlp#show_adjacent_modes = 1
 let g:airline_detect_iminsert=1
-nmap <leader>1 1gt
-nmap <leader>2 2gt
-nmap <leader>3 3gt
-nmap <leader>4 4gt
-nmap <leader>5 5gt
-nmap <leader>6 6gt
-nmap <leader>7 7gt
-nmap <leader>8 8gt
-nmap <leader>9 9gt
+nmap <silent> <A-1> <Plug>AirlineSelectTab1
+nmap <silent> <A-2> <Plug>AirlineSelectTab2
+nmap <silent> <A-3> <Plug>AirlineSelectTab3
+nmap <silent> <A-4> <Plug>AirlineSelectTab4
+nmap <silent> <A-5> <Plug>AirlineSelectTab5
+nmap <silent> <A-6> <Plug>AirlineSelectTab6
+nmap <silent> <A-7> <Plug>AirlineSelectTab7
+nmap <silent> <A-8> <Plug>AirlineSelectTab8
+nmap <silent> <A-9> <Plug>AirlineSelectTab9
 
 " vim-skeleton
 let g:skeleton_replacements = {}

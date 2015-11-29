@@ -242,7 +242,7 @@ let g:NERDCustomDelimiters = {
 \ }"}}}
 
 " nerdtree
-nnoremap <silent> <Leader><Tab> :<C-u>NERDTreeToggle<CR>
+nnoremap <silent> <Leader><Tab> :<C-u>NERDTreeFind<CR>
 fun! init#leaveNerdTree()
     close
 endfun

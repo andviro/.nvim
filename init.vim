@@ -12,6 +12,7 @@ call plug#begin()
 
     " usability
     Plug 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
@@ -239,6 +240,17 @@ let g:NERDCustomDelimiters = {
     \ 'snippets': { 'left': '# ' },
     \ 'jinja': { 'left': '{# ', 'right': ' #}' }
 \ }"}}}
+
+" nerdtree
+nnoremap <silent> <Leader><Tab> :<C-u>NERDTreeToggle<CR>
+fun! init#leaveNerdTree()
+    close
+endfun
+call NERDTreeAddKeyMap({
+       \ 'key': '<Tab>',
+       \ 'callback': 'init#leaveNerdTree',
+       \ 'quickhelpText': 'leave window',
+       \})
 
 " airline
 if !exists('g:airline_symbols')

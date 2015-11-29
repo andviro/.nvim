@@ -165,17 +165,17 @@ nmap <silent> <C-_> :let &l:iminsert = !&l:iminsert<CR>
 nmap <silent> <C-Space> :let &l:iminsert = !&l:iminsert<CR>
 
 " general key bindings
-nnoremap <silent> <C-H> :bprev<CR>
-nnoremap <silent> <C-L> :bnext<CR>
+nnoremap <silent> <C-H> :tabprev<CR>
+nnoremap <silent> <C-L> :tabnext<CR>
 nnoremap <silent> <M-l> :nohlsearch<CR><C-L>
 nnoremap <silent> <Tab> :b#<CR>
 map <Space> <C-D>
 nnoremap <BS> <C-O>
 nmap <S-H> <C-O>
 nmap <S-L> <C-I>
-nnoremap <silent> <C-j> :tabnext<CR>
-nnoremap <silent> <C-k> :tabprev<CR>
-"nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
+nnoremap <silent> <C-j> :bnext<CR>
+nnoremap <silent> <C-k> :bprev<CR>
+nnoremap <silent> <C-W>c :bprev <BAR> bdelete #<CR>
 
 " Neovim terminal
 if has("nvim")
@@ -252,6 +252,7 @@ let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#enabled = 1
@@ -320,7 +321,7 @@ nmap <silent> <Leader>gu :Git pull<CR>
 
 " FZF
 let g:fzf_command_prefix = 'FZF'
-let g:fzf_layout = { 'window': 'belowright 10new' }
+let g:fzf_layout = { 'window': 'belowright 10new', 'options': '--reverse' }
 let g:fzf_vertical_layout = { 'window': 'vertical aboveleft 50new' }
 
 fun! init#projectDir() abort " from unite.vim plugin
@@ -348,5 +349,5 @@ fun! init#agProject(base, ...)
     return l:res
 endfun
 
-nnoremap <silent> <Leader><Tab> :<C-u>call fzf#vim#files(init#projectDir(), init#agProject(init#projectDir(), g:fzf_vertical_layout))<CR>
-nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject("", g:fzf_layout))<CR>
+nnoremap <silent> <C-P> :<C-u>call fzf#vim#files(init#projectDir(), init#agProject(init#projectDir(), g:fzf_layout))<CR>
+"nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject("", g:fzf_layout))<CR>

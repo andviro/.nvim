@@ -175,7 +175,7 @@ nmap <S-H> <C-O>
 nmap <S-L> <C-I>
 nnoremap <silent> <C-j> :bnext<CR>
 nnoremap <silent> <C-k> :bprev<CR>
-nnoremap <silent> <C-W>d :bprev <BAR> bdelete #<CR>
+nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
 
 " Neovim terminal
 if has("nvim")

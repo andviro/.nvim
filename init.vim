@@ -12,7 +12,8 @@ call plug#begin()
 
     " usability
     Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'scrooloose/nerdtree' 
+    Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
@@ -246,11 +247,13 @@ nnoremap <silent> <Leader><Tab> :<C-u>NERDTreeFind<CR>
 fun! init#leaveNerdTree()
     close
 endfun
-call NERDTreeAddKeyMap({
-       \ 'key': '<Tab>',
-       \ 'callback': 'init#leaveNerdTree',
-       \ 'quickhelpText': 'leave window',
-       \})
+augroup vimrc
+    au VimEnter * call NERDTreeAddKeyMap({
+           \ 'key': '<Tab>',
+           \ 'callback': 'init#leaveNerdTree',
+           \ 'quickhelpText': 'leave window',
+           \})
+augroup END
 
 " airline
 if !exists('g:airline_symbols')

@@ -12,8 +12,7 @@ call plug#begin()
 
     " usability
     Plug 'scrooloose/nerdcommenter'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
@@ -166,17 +165,17 @@ nmap <silent> <C-_> :let &l:iminsert = !&l:iminsert<CR>
 nmap <silent> <C-Space> :let &l:iminsert = !&l:iminsert<CR>
 
 " general key bindings
-nnoremap <silent> <C-H> <C-O>
-nnoremap <silent> <C-L> <C-I>
+nnoremap <silent> <C-H> :bprev<CR>
+nnoremap <silent> <C-L> :bnext<CR>
 nnoremap <silent> <M-l> :nohlsearch<CR><C-L>
 nnoremap <silent> <Tab> :b#<CR>
 map <Space> <C-D>
 nnoremap <BS> <C-O>
-"nmap <S-H> <C-O>
-"nmap <S-L> <C-I>
-nnoremap <silent> <C-j> :bnext<CR>
-nnoremap <silent> <C-k> :bprev<CR>
-nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
+nmap <S-H> <C-O>
+nmap <S-L> <C-I>
+nnoremap <silent> <C-j> :tabnext<CR>
+nnoremap <silent> <C-k> :tabprev<CR>
+"nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
 
 " Neovim terminal
 if has("nvim")
@@ -242,13 +241,22 @@ let g:NERDCustomDelimiters = {
 \ }"}}}
 
 " airline
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+" unicode symbols
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+  let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#ctrlp#show_adjacent_modes = 1
 let g:airline_detect_iminsert=1
 nmap <silent> <A-1> <Plug>AirlineSelectTab1
 nmap <silent> <A-2> <Plug>AirlineSelectTab2
@@ -310,14 +318,35 @@ nmap <silent> <Leader>ga :Git add %<CR>
 nmap <silent> <Leader>gp :Git push --all<CR>
 nmap <silent> <Leader>gu :Git pull<CR>
 
-" NERDTree
-
-nnoremap <silent> <Leader><Tab> :NERDTreeToggle<CR>
-
 " FZF
-"nnoremap <silent> <C-P> :<C-u>FZF<CR>
-nnoremap <silent> <C-P> :<C-u>call fzf#run({
-            \ 'source': 'ag --ignore ".git" --follow --nocolor --nogroup --hidden -g ""', 
-            \ 'sink' : 'e',
-            \ 'window' : 'vertical aboveleft 40new'
-            \ })<CR>
+let g:fzf_command_prefix = 'FZF'
+let g:fzf_layout = { 'window': 'belowright 10new' }
+let g:fzf_vertical_layout = { 'window': 'vertical aboveleft 50new' }
+
+fun! init#projectDir() abort " from unite.vim plugin
+    let parent = expand("%:p:h")
+    while 1
+        for marker in ['.git', '.hg', '.svn']
+            let path = parent . '/.git'
+            if isdirectory(path) || filereadable(path)
+              return fnamemodify(parent, ":~:.")
+            endif
+        endfor
+        let next = fnamemodify(parent, ':h')
+        if next == parent
+          return ''
+        endif
+        let parent = next
+    endwhile
+endfunction
+
+fun! init#agProject(base, ...)
+    let l:res ={'source': 'ag --ignore ".git" --ignore ".hg" --follow --nocolor --nogroup --hidden -g "" ' . a:base}
+    for eopts in a:000
+        call extend(l:res, eopts)
+    endfor
+    return l:res
+endfun
+
+nnoremap <silent> <Leader><Tab> :<C-u>call fzf#vim#files(init#projectDir(), init#agProject(init#projectDir(), g:fzf_vertical_layout))<CR>
+nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject("", g:fzf_layout))<CR>

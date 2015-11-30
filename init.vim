@@ -77,6 +77,7 @@ set history=1000
 set tabpagemax=50
 set viminfo^=!
 set sessionoptions-=options
+set nolazyredraw
 
 " files
 set wildignore+=RCS,CVS,*~,*.aux,*.bak,*.dvi,*.toc
@@ -136,7 +137,7 @@ set iminsert=0
 set imsearch=-1
 
 " appearance
-set laststatus=2
+set laststatus=1
 set ruler
 set showcmd
 set wildmenu
@@ -270,7 +271,7 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#ctrlp#show_adjacent_modes = 1
 let g:airline_detect_iminsert=1

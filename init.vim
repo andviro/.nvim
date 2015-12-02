@@ -348,6 +348,13 @@ let g:ctrlp_custom_ignore = {
 \ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:30'
+let g:ctrlp_user_command = {
+\ 'types': {
+  \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
+  \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
+  \ },
+\ 'fallback': 'find %s -type f'
+\ }
 
 
 " vim-pandoc and markdown
@@ -360,10 +367,3 @@ let g:pandoc#syntax#codeblocks#embeds#langs=['python','cpp','html','go']
 let g:pandoc#folding#fdc=0
 let g:pandoc#formatting#mode='hA'
 let g:pandoc#folding#mode = 'stacked'
-let g:ctrlp_user_command = {
-\ 'types': {
-  \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
-  \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
-  \ },
-\ 'fallback': 'find %s -type f'
-\ }

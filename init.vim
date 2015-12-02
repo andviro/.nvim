@@ -14,7 +14,7 @@ call plug#begin()
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/nerdtree' 
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
@@ -335,38 +335,20 @@ nmap <silent> <Leader>ga :Git add %<CR>
 nmap <silent> <Leader>gp :Git push --all<CR>
 nmap <silent> <Leader>gu :Git pull<CR>
 
-" FZF
-let g:fzf_command_prefix = 'FZF'
-let g:fzf_layout = { 'window': 'belowright 10new', 'options': '--reverse' }
-let g:fzf_vertical_layout = { 'window': 'vertical aboveleft 50new' }
 
-fun! init#projectDir() abort " from unite.vim plugin
-    let parent = expand("%:p:h")
-    while 1
-        for marker in ['.git', '.hg', '.svn']
-            let path = parent . '/.git'
-            if isdirectory(path) || filereadable(path)
-              return fnamemodify(parent, ":~:.")
-            endif
-        endfor
-        let next = fnamemodify(parent, ':h')
-        if next == parent
-          return ''
-        endif
-        let parent = next
-    endwhile
-endfunction
+" ctrlp
+let g:ctrlp_key_loop = 1
+let g:ctrlp_by_filename = 0
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_reuse_window = 'netrw\|quickfix'
+let g:ctrlp_extensions = ['session']
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+\ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules)$'
+\ }
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:30'
 
-fun! init#agProject(base, ...)
-    let l:res ={'source': 'ag --ignore ".git" --ignore ".hg" --follow --nocolor --nogroup --hidden -g "" ' . a:base}
-    for eopts in a:000
-        call extend(l:res, eopts)
-    endfor
-    return l:res
-endfun
-
-nnoremap <silent> <C-P> :<C-u>call fzf#vim#files(init#projectDir(), init#agProject(init#projectDir(), g:fzf_layout))<CR>
-"nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject("", g:fzf_layout))<CR>
 
 " vim-pandoc and markdown
 
@@ -378,3 +360,10 @@ let g:pandoc#syntax#codeblocks#embeds#langs=['python','cpp','html','go']
 let g:pandoc#folding#fdc=0
 let g:pandoc#formatting#mode='hA'
 let g:pandoc#folding#mode = 'stacked'
+let g:ctrlp_user_command = {
+\ 'types': {
+  \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
+  \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
+  \ },
+\ 'fallback': 'find %s -type f'
+\ }

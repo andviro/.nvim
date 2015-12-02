@@ -367,3 +367,14 @@ endfun
 
 nnoremap <silent> <C-P> :<C-u>call fzf#vim#files(init#projectDir(), init#agProject(init#projectDir(), g:fzf_layout))<CR>
 "nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject("", g:fzf_layout))<CR>
+
+" vim-pandoc and markdown
+
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_frontmatter=1
+
+let g:pandoc#after#modules#enabled = ["ultisnips"]
+let g:pandoc#syntax#codeblocks#embeds#langs=['python','cpp','html','go']
+let g:pandoc#folding#fdc=0
+let g:pandoc#formatting#mode='hA'
+let g:pandoc#folding#mode = 'stacked'

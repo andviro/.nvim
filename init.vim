@@ -287,6 +287,7 @@ nmap <silent> <A-9> <Plug>AirlineSelectTab9
 
 " vim-skeleton
 let g:skeleton_replacements = {}
+let g:skeleton_template_dir = expand("<sfile>:p:h")."/templates"
 
 function! g:skeleton_replacements.CLASS()
     let l:filen = tolower(expand("%:t:r"))

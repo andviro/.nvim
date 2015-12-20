@@ -1,0 +1,99 @@
+snippet ii "\item"
+\item ${0}
+endsnippet
+
+snippet ии "\item"
+\item ${0}
+endsnippet
+
+snippet ll "\label"
+\label{${1:label}}
+endsnippet
+
+snippet лл "\label"
+\label{${1:label}}
+endsnippet
+
+snippet eq "Equation" !w
+\begin{equation}\label{eq:${1:label}}
+${0}
+\end{equation}
+endsnippet
+
+snippet ея "Equation" !w
+\begin{equation}\label{eq:${1:label}}
+${0}
+\end{equation}
+endsnippet
+
+snippet lst
+	\begin{lstlisting}
+		${1}
+	\end{lstlisting}
+endsnippet
+
+snippet лст
+	\begin{lstlisting}
+		${1}
+	\end{lstlisting}
+endsnippet
+
+snippet article
+	% vim: ts=2: sw=2: et: fenc=utf-8
+	% $Id$
+	\documentclass[a4paper]{article}
+	\usepackage{type1ec}
+	\usepackage[14pt]{extsizes}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Cross-refs
+	\usepackage[dvips]{hyperref}
+	\usepackage{hypbmsec}
+	\usepackage{xr}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Visual stuff
+	\usepackage[hmargin={2.5cm, 1.5cm}, top=2cm, bottom=2cm, nohead]{geometry}
+	\usepackage{tikz}
+	\usepackage{latexsym}
+	\usepackage{graphicx}
+	\usepackage{psfrag}
+	\usepackage{color}
+	%\usepackage{epic}
+	%\usepackage{eepic}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Aux packages
+	\usepackage{listings}
+	\usepackage{booktabs}
+	%\usepackage{showkeys}
+	%\usepackage{fancyhdr}
+	%\usepackage{enumerate}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Float management
+	%\usepackage{placeins}
+	%\usepackage{afterpage}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Language setup
+	\usepackage[T1]{fontenc}
+	\usepackage{ucs}
+	\usepackage[utf8x]{inputenc}
+	\usepackage[russian]{babel}
+	\input{andrew}
+	\linespace{1.5}
+	\sloppy
+	\title{${1:TTTTT}}
+	% $1
+	\author{${2:SSSSSS}}
+	% $2
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Fancy header stuff
+	%\pagestyle{fancy}
+	%\fancyhf{}%
+	%\fancyhead[R]{\thepage}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title page and TOC
+	\maketitle
+	\tableofcontents
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Listings setup
+	\lstset{frame=single, basicstyle=\small\ttfamily, extendedchars=true,
+	%        columns=fixed, language=C}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document begins
+	${3}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography
+	%\bibliography{andrew}
+	%\bibliographystyle{my}
+	\end{document}
+endsnippet
+
+# vim:ft=snippets:

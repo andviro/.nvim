@@ -1,0 +1,23 @@
+# Snippets for nim
+
+# proc
+snippet p "proc Procedure(...) [result type] ="
+proc ${1:Name}${2:*}(${3:Params})${4:: ${5:Result}} =
+	${0:${VISUAL}}
+endsnippet
+
+snippet m "proc Procedure(self: Object, ...) [result type] ="
+proc ${1:Name}${2:*}(self: ${3:Type})${4:: ${5:Result}} =
+	${0:${VISUAL}}
+endsnippet
+
+# object
+snippet o "Object= object[ of RootObj]..."
+${1:Object} = ${2:ref }object${2: of ${3:RootObj}}
+	${0:${VISUAL}}
+endsnippet
+
+# field
+snippet f "FieldName[*]: FieldType"
+${1:fieldName}${2:*}: ${2:string}
+endsnippet

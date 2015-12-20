@@ -1,0 +1,51 @@
+###########################################################################
+#                          SNIPPETS for ASCIIDOC                          #
+###########################################################################
+
+###########################
+# Sections and Paragraphs #
+###########################
+snippet h0 "Title" b
+= ${1:Section Name}
+$0
+endsnippet
+
+snippet h1 "Section" b
+== ${1:Section Name}
+$0
+endsnippet
+
+snippet h2 "SubSection" b
+=== ${1:Section Name}
+$0
+endsnippet
+
+snippet h3 "Sub SubSection" b
+==== ${1:Paragraph Name}
+$0
+endsnippet
+
+snippet h4 "Paragraph" b
+==== ${1:Paragraph Name}
+$0
+endsnippet
+
+
+################
+# Common stuff #
+################
+snippet a "Anchor"
+[[${1:label}]]
+endsnippet
+
+snippet ref "Cross-reference"
+<<${1:label},${2:ref text}>>
+endsnippet
+
+snippet src "Source"
+[source,${1:python}]
+-------------------------------------------------------
+$0
+-------------------------------------------------------
+endsnippet
+# vim:ft=snippets:

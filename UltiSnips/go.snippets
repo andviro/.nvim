@@ -1,0 +1,17 @@
+# Go
+
+snippet fuh "Noodle handler" b
+func ${1:handler}(${2:ctx} context.Context, ${3:w} http.ResponseWriter, ${4:r} *http.Request) error {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet fumh "Noodle handler method" b
+func (${1:receiver} ${2:type}) ${3:handler}(${4:ctx} context.Context, ${5:w} http.ResponseWriter, ${6:r} *http.Request) error {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet yield "Noodle yield"
+render.Yield(${1:ctx}, ${2:200}, ${3:res})
+endsnippet

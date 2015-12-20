@@ -1,0 +1,37 @@
+snippet u "using"
+using ${1:System};
+endsnippet
+
+snippet c "class"
+class ${1:MyClass} ${2} {
+  ${3}
+}
+endsnippet
+
+snippet m "Main"
+static void Main() {
+  $0
+}
+endsnippet
+
+snippet public "public"
+public $1 ${2:DoIt}(${3}) {
+  $0
+}
+endsnippet
+
+snippet foreach "foreach"
+foreach (${1:var} ${2:x} in ${3:xs}) {
+  $0
+}
+endsnippet
+
+snippet CWL "Console.WriteLine()"
+Console.WriteLine("${1:{0}}", ${2:i});$0
+endsnippet
+
+snippet for "for"
+for (${1:int i=0}; ${2:i<1000}; ${3:i++}) {
+  $0
+}
+endsnippet

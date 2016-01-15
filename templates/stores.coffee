@@ -77,8 +77,8 @@ class @CLASS@Store
 
     onToggleSelection: (item) ->
         item.selected = !item.selected
-        @state.anySelected = _.any @state.items, (p) -> !!p.selected
-        @state.allSelected = _.all @state.items, (p) -> !!p.selected
+        @state.anySelected = _.some @state.items, (p) -> !!p.selected
+        @state.allSelected = _.every @state.items, (p) -> !!p.selected
         @emitChange()
 
     onToggleSelectAll: (id) ->

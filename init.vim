@@ -37,10 +37,9 @@ call plug#begin()
     Plug 'kchmck/vim-coffee-script'
     Plug 'elzr/vim-json'
     Plug 'hynek/vim-python-pep8-indent'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
     Plug 'mtscout6/vim-cjsx'
-    Plug 'marijnh/tern_for_vim', { 'do': 'npm update' }
-    Plug 'othree/tern_for_vim_coffee'
+    Plug 'leafgarland/typescript-vim'
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'vim-pandoc/vim-pandoc-after'
@@ -224,6 +223,7 @@ au!
     au BufRead,BufNewFile *.txt setlocal ft=asciidoc
     au BufRead *.hva setlocal ft=tex
     au BufWrite *.html :Autoformat
+    au BufWrite *.ts :Neomake
 augroup END"}}}
 
 " coffeescript

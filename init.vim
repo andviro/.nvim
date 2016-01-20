@@ -49,6 +49,7 @@ call plug#begin()
     Plug 'chase/vim-ansible-yaml'
     Plug 'Chiel92/vim-autoformat'
     Plug 'rdnetto/YCM-Generator', {'branch' : 'stable'}
+    Plug 'dylanaraps/taskrunner.nvim'
 call plug#end()
 
 " system

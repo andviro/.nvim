@@ -18,6 +18,7 @@ call plug#begin()
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
+    Plug 'kassio/neoterm'
 
     " snippets
     Plug 'sirver/ultisnips'

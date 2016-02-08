@@ -8,6 +8,8 @@ call plug#begin()
     " appearance
     Plug 'andviro/vim-colors-solarized'
     Plug 'bling/vim-airline'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'wincent/terminus'
 
     " usability

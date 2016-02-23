@@ -375,3 +375,6 @@ let g:pandoc#folding#mode = 'stacked'
 
 " Neoterm
 let g:neoterm_size = 7
+
+" vim-go
+"let g:go_fmt_command = "goimports"

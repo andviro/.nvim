@@ -21,6 +21,7 @@ call plug#begin()
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'kassio/neoterm'
+    Plug 'mtth/scratch.vim'
 
     " snippets
     Plug 'sirver/ultisnips'
@@ -43,6 +44,7 @@ call plug#begin()
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
     Plug 'mtscout6/vim-cjsx'
     Plug 'leafgarland/typescript-vim'
+    Plug 'amiorin/vim-fenced-code-blocks'
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'vim-pandoc/vim-pandoc-after'

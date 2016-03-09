@@ -380,3 +380,7 @@ let g:neoterm_size = 7
 
 " vim-go
 "let g:go_fmt_command = "goimports"
+
+" scratch
+let g:scratch_filetype = "pandoc"
+let g:scratch_persistence_file = $HOME . '/Dropbox/notes.md'

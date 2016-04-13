@@ -14,8 +14,7 @@ call plug#begin()
 
     " usability
     Plug 'scrooloose/nerdcommenter'
-    Plug 'scrooloose/nerdtree' 
-    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'tpope/vim-vinegar'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
@@ -179,8 +178,8 @@ nnoremap <silent> <M-l> :nohlsearch<CR><C-L>
 nnoremap <silent> <Tab> :b#<CR>
 map <Space> <C-D>
 nnoremap <BS> <C-O>
-nmap <S-H> <C-O>
-nmap <S-L> <C-I>
+nnoremap <S-H> <C-O>
+nnoremap <S-L> <C-I>
 nnoremap <silent> <C-j> :bnext<CR>
 nnoremap <silent> <C-k> :bprev<CR>
 nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
@@ -248,19 +247,6 @@ let g:NERDCustomDelimiters = {
     \ 'snippets': { 'left': '# ' },
     \ 'jinja': { 'left': '{# ', 'right': ' #}' }
 \ }"}}}
-
-" nerdtree
-nnoremap <silent> <Leader><Tab> :<C-u>NERDTreeFind<CR>
-fun! init#leaveNerdTree()
-    close
-endfun
-augroup vimrc
-    au VimEnter * call NERDTreeAddKeyMap({
-           \ 'key': '<Tab>',
-           \ 'callback': 'init#leaveNerdTree',
-           \ 'quickhelpText': 'leave window',
-           \})
-augroup END
 
 " airline
 if !exists('g:airline_symbols')

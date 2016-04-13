@@ -15,7 +15,8 @@ call plug#begin()
     " usability
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-vinegar'
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
@@ -172,16 +173,16 @@ nmap <silent> <C-_> :let &l:iminsert = !&l:iminsert<CR>
 nmap <silent> <C-Space> :let &l:iminsert = !&l:iminsert<CR>
 
 " general key bindings
-nnoremap <silent> <C-H> :tabprev<CR>
-nnoremap <silent> <C-L> :tabnext<CR>
+nnoremap <silent> <C-j> :tabprev<CR>
+nnoremap <silent> <C-k> :tabnext<CR>
 nnoremap <silent> <M-l> :nohlsearch<CR><C-L>
 nnoremap <silent> <Tab> :b#<CR>
 map <Space> <C-D>
 nnoremap <BS> <C-O>
 nnoremap <S-H> <C-O>
 nnoremap <S-L> <C-I>
-nnoremap <silent> <C-j> :bnext<CR>
-nnoremap <silent> <C-k> :bprev<CR>
+nnoremap <silent> <C-l> :bnext<CR>
+nnoremap <silent> <C-h> :bprev<CR>
 nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
 
 " Neovim terminal
@@ -370,3 +371,6 @@ let g:neoterm_size = 7
 " scratch
 let g:scratch_filetype = "pandoc"
 let g:scratch_persistence_file = $HOME . '/Dropbox/notes.md'
+
+" fzf
+nnoremap <C-p> :<C-u>GitFiles<CR>

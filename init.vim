@@ -176,7 +176,7 @@ nmap <silent> <C-Space> :let &l:iminsert = !&l:iminsert<CR>
 nnoremap <silent> <C-j> :tabprev<CR>
 nnoremap <silent> <C-k> :tabnext<CR>
 nnoremap <silent> <M-l> :nohlsearch<CR><C-L>
-nnoremap <silent> <Tab> :b#<CR>
+"nnoremap <silent> <Tab> :b#<CR>
 map <Space> <C-D>
 nnoremap <BS> <C-O>
 nnoremap <S-H> <C-O>
@@ -373,4 +373,6 @@ let g:scratch_filetype = "pandoc"
 let g:scratch_persistence_file = $HOME . '/Dropbox/notes.md'
 
 " fzf
+let g:fzf_buffers_jump = 1
 nnoremap <C-p> :<C-u>GitFiles<CR>
+nnoremap <Tab> :<C-u>Buffers<CR>

@@ -15,7 +15,7 @@ call plug#begin()
     " usability
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-vinegar'
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
@@ -371,3 +371,40 @@ let g:neoterm_size = 7
 " scratch
 let g:scratch_filetype = "pandoc"
 let g:scratch_persistence_file = $HOME . '/Dropbox/notes.md'
+
+" fzf
+
+let g:fzf_command_prefix = 'FZF'
+let g:fzf_horizontal = { 'window': 'belowright 10new' }
+let g:fzf_vertical = { 'window': 'vertical aboveleft 50new' }
+let g:fzf_layout = g:fzf_horizontal
+
+fun! init#projectDir() abort " from unite.vim plugin
+    let parent = expand("%:p:h")
+    while 1
+        for marker in ['.git', '.hg', '.svn']
+            let path = parent . '/' . marker
+            if isdirectory(path)
+              return fnamemodify(parent, ":~:.")
+            endif
+        endfor
+        let next = fnamemodify(parent, ':h')
+        if next == parent
+          return ''
+        endif
+        let parent = next
+    endwhile
+endfunction
+
+let g:fzf_layout["options"] = "--tiebreak=length,end"
+let g:relpath_cmd = resolve(printf("%s/bin/relpath", expand("<sfile>:p:h")))
+let g:ag_cmd = 'ag --ignore ".git" --ignore ".hg" --ignore "vendor" --follow --nocolor --nogroup --hidden -g "" '
+fun! init#agProject(base, ...)
+    let l:res ={'source': g:ag_cmd . a:base . ' | ' . g:relpath_cmd . ' ' . expand("%:p:h")}
+    for eopts in a:000
+        call extend(l:res, eopts)
+    endfor
+    return l:res
+endfun
+
+nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject(init#projectDir(), g:fzf_layout))<CR>

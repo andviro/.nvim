@@ -15,8 +15,7 @@ call plug#begin()
     " usability
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-vinegar'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
@@ -176,7 +175,7 @@ nmap <silent> <C-Space> :let &l:iminsert = !&l:iminsert<CR>
 nnoremap <silent> <C-j> :tabprev<CR>
 nnoremap <silent> <C-k> :tabnext<CR>
 nnoremap <silent> <M-l> :nohlsearch<CR><C-L>
-"nnoremap <silent> <Tab> :b#<CR>
+nnoremap <silent> <Tab> :b#<CR>
 map <Space> <C-D>
 nnoremap <BS> <C-O>
 nnoremap <S-H> <C-O>
@@ -371,8 +370,3 @@ let g:neoterm_size = 7
 " scratch
 let g:scratch_filetype = "pandoc"
 let g:scratch_persistence_file = $HOME . '/Dropbox/notes.md'
-
-" fzf
-let g:fzf_buffers_jump = 1
-nnoremap <C-p> :<C-u>GitFiles<CR>
-nnoremap <Tab> :<C-u>Buffers<CR>

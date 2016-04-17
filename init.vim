@@ -377,7 +377,7 @@ let g:scratch_persistence_file = $HOME . '/Dropbox/notes.md'
 let g:fzf_command_prefix = 'FZF'
 let g:fzf_horizontal = { 'window': 'belowright 10new' }
 let g:fzf_vertical = { 'window': 'vertical aboveleft 50new' }
-let g:fzf_layout = g:fzf_vertical
+let g:fzf_layout = g:fzf_horizontal
 
 fun! init#projectDir() abort " from unite.vim plugin
     let parent = expand("%:p:h")
@@ -400,7 +400,7 @@ augroup FZFutil
     au BufNewFile,BufRead * let b:base_project_dir = init#projectDir()
 augroup end
 
-let g:fzf_layout["options"] = "--tiebreak=length,end"
+let g:fzf_layout["options"] = "--reverse --tiebreak=length,end"
 let g:relpath_cmd = resolve(printf("%s/bin/relpath", expand("<sfile>:p:h")))
 let g:ag_cmd = 'ag --ignore ".git" --ignore ".hg" --ignore "vendor" --follow --nocolor --nogroup --hidden -g "" '
 fun! init#agProject(base, ...)

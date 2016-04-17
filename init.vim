@@ -341,10 +341,10 @@ let g:ctrlp_custom_ignore = {
 \ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules)$'
 \ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:30'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:50'
 let g:ctrlp_user_command = {
 \ 'types': {
-  \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
+  \ 1: ['.git', 'cd %s && git ls-files -c -o --exclude-standard .'],
   \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
   \ },
 \ 'fallback': 'find %s -type f'

@@ -15,7 +15,7 @@ call plug#begin()
     " usability
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-vinegar'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'andviro/fzf.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
@@ -409,6 +409,7 @@ fun! init#agProject(base, ...)
         call extend(l:res, eopts)
     endfor
     return l:res
-endfun
+endfunction
 
 nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject(b:base_project_dir, g:fzf_layout))<CR>
+nnoremap <silent> <C-J> :<C-u>FZFLines<CR>

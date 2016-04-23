@@ -13,6 +13,7 @@ call plug#begin()
     Plug 'wincent/terminus'
 
     " usability
+    Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-vinegar'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
@@ -159,6 +160,13 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
+" Ctrl-space tweak
+if !has("gui_running")
+    map <C-@> <C-Space>
+    imap <C-@> <C-Space>
+    cmap <C-@> <C-Space>
+endif
+
 " IM switch
 imap <C-\> <C-^>
 imap <C-_> <C-^>
@@ -247,6 +255,20 @@ let g:NERDCustomDelimiters = {
     \ 'snippets': { 'left': '# ' },
     \ 'jinja': { 'left': '{# ', 'right': ' #}' }
 \ }"}}}
+
+" nerdtree
+let g:NERDTreeQuitOnOpen = 1
+nnoremap <silent> <Leader><Tab> :<C-u>NERDTreeFind<CR>
+fun! init#leaveNerdTree()
+    close
+endfun
+augroup vimrc
+    au VimEnter * call NERDTreeAddKeyMap({
+           \ 'key': '<Tab>',
+           \ 'callback': 'init#leaveNerdTree',
+           \ 'quickhelpText': 'leave window',
+           \})
+augroup END
 
 " airline
 if !exists('g:airline_symbols')
@@ -412,4 +434,5 @@ fun! init#agProject(base, ...)
 endfunction
 
 nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject(b:base_project_dir, g:fzf_layout))<CR>
-nnoremap <silent> <C-J> :<C-u>FZFLines<CR>
+nnoremap <silent> <C-T> :<C-u>FZFHistory<CR>
+nnoremap <silent> <Leader>; :<C-u>FZFLines<CR>

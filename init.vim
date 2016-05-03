@@ -57,6 +57,7 @@ call plug#begin()
     Plug 'Chiel92/vim-autoformat'
     Plug 'rdnetto/YCM-Generator', {'branch' : 'stable'}
     Plug 'dylanaraps/taskrunner.nvim'
+    Plug 'KabbAmine/zeavim.vim'
 call plug#end()
 
 " system

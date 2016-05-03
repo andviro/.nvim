@@ -15,7 +15,6 @@ call plug#begin()
     " usability
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'tpope/vim-vinegar'
     Plug 'FelikZ/ctrlp-py-matcher'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'simnalamburt/vim-mundo'
@@ -23,6 +22,7 @@ call plug#begin()
     Plug 'terryma/vim-multiple-cursors'
     Plug 'kassio/neoterm'
     Plug 'mtth/scratch.vim'
+    Plug 'AndrewRadev/splitjoin.vim'
 
     " snippets
     Plug 'sirver/ultisnips'
@@ -187,8 +187,6 @@ nnoremap <silent> <M-l> :nohlsearch<CR><C-L>
 nnoremap <silent> <Tab> :b#<CR>
 map <Space> <C-D>
 nnoremap <BS> <C-O>
-nnoremap <S-H> <C-O>
-nnoremap <S-L> <C-I>
 nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <silent> <C-h> :bprev<CR>
 nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
@@ -436,5 +434,11 @@ let g:neoterm_size = 7
 "let g:go_fmt_command = "goimports"
 
 " scratch
+let g:scratch_no_mappings = 1
 let g:scratch_filetype = "pandoc"
 let g:scratch_persistence_file = $HOME . '/Dropbox/notes.md'
+nmap gs <plug>(scratch-insert-reuse)
+
+" splitjoin
+let g:splitjoin_split_mapping = 'gS'
+let g:splitjoin_join_mapping  = 'gJ'

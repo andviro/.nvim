@@ -23,7 +23,7 @@ call plug#begin()
     Plug 'kassio/neoterm'
     Plug 'mtth/scratch.vim'
     Plug 'AndrewRadev/splitjoin.vim'
-
+    Plug 'easymotion/vim-easymotion'
     " snippets
     Plug 'sirver/ultisnips'
     Plug 'honza/vim-snippets'

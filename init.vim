@@ -15,8 +15,7 @@ call plug#begin()
     " usability
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'FelikZ/ctrlp-py-matcher'
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
@@ -219,24 +218,6 @@ fun! init#restore_cursor()
     endif
 endfunction 
 
-" from unite.vim plugin
-fun! init#projectDir() abort 
-    let parent = expand("%:p:h")
-    while 1
-        for marker in ['.git', '.hg', '.svn']
-            let path = parent . '/' . marker
-            if isdirectory(path)
-              return fnamemodify(parent, ":~:.")
-            endif
-        endfor
-        let next = fnamemodify(parent, ':h')
-        if next == parent
-          return ''
-        endif
-        let parent = next
-    endwhile
-endfunction
-
 " autocommands
 augroup vimrc
 au!
@@ -256,8 +237,7 @@ au!
     au BufRead *.hva setlocal ft=tex
     au BufWrite *.html :Autoformat
     au BufWrite *.ts :Neomake
-    au BufAdd,BufNewFile,BufRead * let b:base_project_dir = init#projectDir()
-augroup END
+augroup END"}}}
 
 " coffeescript
 let g:coffee_lint_options = '-f ' . $HOME . '/.vim/coffeelint.json'
@@ -274,7 +254,7 @@ let g:NERDCustomDelimiters = {
     \ 'python': { 'left': '# ' },
     \ 'snippets': { 'left': '# ' },
     \ 'jinja': { 'left': '{# ', 'right': ' #}' }
-\ }
+\ }"}}}
 
 " nerdtree
 let g:NERDTreeQuitOnOpen = 1
@@ -378,14 +358,12 @@ let g:ctrlp_by_filename = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_reuse_window = 'netrw\|quickfix'
 let g:ctrlp_extensions = ['session']
-let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules|vendor)$'
+\ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules)$'
 \ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10000'
-let g:ctrlp_default_input = 1
-
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:50'
 let g:ctrlp_user_command = {
 \ 'types': {
   \ 1: ['.git', 'cd %s && git ls-files -c -o --exclude-standard .'],
@@ -394,29 +372,6 @@ let g:ctrlp_user_command = {
 \ 'fallback': 'find %s -type f'
 \ }
 
-" If ag is available use it as filename list generator instead of 'find'
-if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command['fallback'] = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore "vendor" --ignore ''node_modules'' --hidden -g ""'
-endif
-
-" PyMatcher for CtrlP
-if !has('python')
-    echo 'In order to use pymatcher plugin, you need +python compiled vim'
-else
-    let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-endif
-" Set delay to prevent extra search
-let g:ctrlp_lazy_update = 1
-
-" Do not clear filenames cache, to improve CtrlP startup
-" You can manualy clear it by <F5>
-let g:ctrlp_clear_cache_on_exit = 0
-
-" Set no file limit, we are building a big project
-let g:ctrlp_max_files = 0
-
-let g:ctrlp_default_input = 1
 
 " vim-pandoc and markdown
 
@@ -444,3 +399,46 @@ nmap gs <plug>(scratch-insert-reuse)
 " splitjoin
 let g:splitjoin_split_mapping = 'gS'
 let g:splitjoin_join_mapping  = 'gJ'
+
+" fzf
+
+let g:fzf_command_prefix = 'FZF'
+let g:fzf_horizontal = { 'window': 'belowright 10new' }
+let g:fzf_vertical = { 'window': 'vertical aboveleft 50new' }
+let g:fzf_layout = g:fzf_horizontal
+
+fun! init#projectDir() abort " from unite.vim plugin
+    let parent = expand("%:p:h")
+    while 1
+        for marker in ['.git', '.hg', '.svn']
+            let path = parent . '/' . marker
+            if isdirectory(path)
+              return fnamemodify(parent, ":~:.")
+            endif
+        endfor
+        let next = fnamemodify(parent, ':h')
+        if next == parent
+          return ''
+        endif
+        let parent = next
+    endwhile
+endfunction
+
+augroup FZFutil
+    au BufNewFile,BufRead * let b:base_project_dir = init#projectDir()
+augroup end
+
+let g:fzf_layout["options"] = "--reverse --tiebreak=length,end"
+let g:relpath_cmd = resolve(printf("%s/bin/relpath", expand("<sfile>:p:h")))
+let g:ag_cmd = 'ag --ignore ".git" --ignore ".hg" --ignore "vendor" --follow --nocolor --nogroup --hidden -g "" '
+fun! init#agProject(base, ...)
+    let l:res ={'source': g:ag_cmd . a:base . ' | ' . g:relpath_cmd . ' ' . expand("%:p:h")}
+    for eopts in a:000
+        call extend(l:res, eopts)
+    endfor
+    return l:res
+endfunction
+
+nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject(b:base_project_dir, g:fzf_layout))<CR>
+nnoremap <silent> <C-T> :<C-u>FZFHistory<CR>
+nnoremap <silent> <Leader>l :<C-u>FZFLines<CR>

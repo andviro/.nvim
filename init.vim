@@ -24,6 +24,8 @@ call plug#begin()
     Plug 'mtth/scratch.vim'
     Plug 'AndrewRadev/splitjoin.vim'
     Plug 'easymotion/vim-easymotion'
+    Plug 'fabi1cazenave/suckless.vim'
+
     " snippets
     Plug 'sirver/ultisnips'
     Plug 'honza/vim-snippets'

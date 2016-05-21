@@ -385,7 +385,7 @@ let g:ctrlp_custom_ignore = {
 \ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10000'
-let g:ctrlp_default_input = 1
+let g:ctrlp_default_input = 0
 
 let g:ctrlp_user_command = {
 \ 'types': {
@@ -416,8 +416,6 @@ let g:ctrlp_clear_cache_on_exit = 0
 
 " Set no file limit, we are building a big project
 let g:ctrlp_max_files = 0
-
-let g:ctrlp_default_input = 1
 
 " vim-pandoc and markdown
 

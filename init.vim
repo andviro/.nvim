@@ -413,6 +413,7 @@ let g:neoterm_size = 7
 
 " vim-go
 "let g:go_fmt_command = "goimports"
+let g:go_def_mapping_enabled = 0
 
 " scratch
 let g:scratch_no_mappings = 1

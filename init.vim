@@ -364,7 +364,9 @@ let g:ctrlp_custom_ignore = {
 \ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules)$'
 \ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:50'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10000'
+let g:ctrlp_default_input = 0
+
 let g:ctrlp_user_command = {
 \ 'types': {
   \ 1: ['.git', 'cd %s && git ls-files -c -o --exclude-standard .'],
@@ -373,6 +375,27 @@ let g:ctrlp_user_command = {
 \ 'fallback': 'find %s -type f'
 \ }
 
+" If ag is available use it as filename list generator instead of 'find'
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command['fallback'] = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore "vendor" --ignore ''node_modules'' --hidden -g ""'
+endif
+
+" PyMatcher for CtrlP
+if !has('python')
+    echo 'In order to use pymatcher plugin, you need +python compiled vim'
+else
+    let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 1
+
+" Do not clear filenames cache, to improve CtrlP startup
+" You can manualy clear it by <F5>
+let g:ctrlp_clear_cache_on_exit = 0
+
+" Set no file limit, we are building a big project
+let g:ctrlp_max_files = 0
 
 " vim-pandoc and markdown
 

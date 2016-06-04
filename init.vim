@@ -361,7 +361,7 @@ let g:ctrlp_reuse_window = 'netrw\|quickfix'
 let g:ctrlp_extensions = ['session']
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules)$'
+\ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules|vendor)$'
 \ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10000'

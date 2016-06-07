@@ -437,7 +437,7 @@ fun! init#projectDir() abort " from unite.vim plugin
     while 1
         for marker in ['.git', '.hg', '.svn']
             let path = parent . '/' . marker
-            if isdirectory(path)
+            if exists(path)
               return fnamemodify(parent, ":~:.")
             endif
         endfor
@@ -455,15 +455,16 @@ augroup end
 
 let g:fzf_layout["options"] = "--reverse --tiebreak=length,end"
 let g:relpath_cmd = resolve(printf("%s/bin/relpath", expand("<sfile>:p:h")))
-let g:ag_cmd = 'ag --ignore ".git" --ignore ".hg" --ignore "vendor" --follow --nocolor --nogroup --hidden -g "" '
-fun! init#agProject(base, ...)
-    let l:res ={'source': g:ag_cmd . a:base . ' | ' . g:relpath_cmd . ' ' . expand("%:p:h")}
+let g:fzf_ls_cmd = 'ag --ignore ".git" --ignore ".hg" --ignore "vendor" --follow --nocolor --nogroup --hidden -g "" '
+"let g:fzf_ls_cmd = 'git ls-files -c -o --exclude-standard '
+fun! init#fzfListFiles(base, ...)
+    let l:res ={'source': g:fzf_ls_cmd . a:base . ' | ' . g:relpath_cmd . ' ' . expand("%:p:h")}
     for eopts in a:000
         call extend(l:res, eopts)
     endfor
     return l:res
 endfunction
 
-nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#agProject(b:base_project_dir, g:fzf_layout))<CR>
+nnoremap <silent> <C-P> :<C-u>call fzf#vim#files("", init#fzfListFiles(b:base_project_dir, g:fzf_layout))<CR>
 nnoremap <silent> <C-T> :<C-u>FZFHistory<CR>
 nnoremap <silent> <Leader>l :<C-u>FZFLines<CR>

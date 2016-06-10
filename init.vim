@@ -334,7 +334,7 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:UltiSnipsListSnippets="<c-h>"
 
 " [GM]undo
-map <Leader>u :GundoToggle<CR>
+map <Leader>u :MundoToggle<CR>
 
 " neomake
 nmap <leader>b :<C-u>silent wa<CR>:Neomake!<CR>

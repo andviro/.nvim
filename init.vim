@@ -451,6 +451,7 @@ endfunction
 
 augroup FZFutil
     au BufNewFile,BufRead * let b:base_project_dir = init#projectDir()
+    au VimEnter * if !argc() | let b:base_project_dir = init#projectDir() | endif
 augroup end
 
 let g:fzf_layout["options"] = "--reverse --tiebreak=length,end"

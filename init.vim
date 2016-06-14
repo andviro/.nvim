@@ -437,7 +437,7 @@ fun! init#projectDir() abort " from unite.vim plugin
     while 1
         for marker in ['.git', '.hg', '.svn']
             let path = parent . '/' . marker
-            if exists(path)
+            if isdirectory(path) || filereadable(path)
               return fnamemodify(parent, ":~:.")
             endif
         endfor

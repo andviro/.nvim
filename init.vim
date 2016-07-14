@@ -15,11 +15,13 @@ call plug#begin()
     " usability
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+    "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'FelikZ/ctrlp-py-matcher'
     Plug 'simnalamburt/vim-mundo'
     Plug 'Raimondi/delimitMate'
     Plug 'terryma/vim-multiple-cursors'
-    Plug 'kassio/neoterm'
+    "Plug 'kassio/neoterm'
     Plug 'mtth/scratch.vim'
     Plug 'AndrewRadev/splitjoin.vim'
     Plug 'easymotion/vim-easymotion'
@@ -365,7 +367,7 @@ let g:ctrlp_custom_ignore = {
 \ }
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10000'
-let g:ctrlp_default_input = 0
+"let g:ctrlp_default_input = 0
 
 let g:ctrlp_user_command = {
 \ 'types': {

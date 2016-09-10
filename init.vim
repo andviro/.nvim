@@ -366,8 +366,8 @@ let g:neomake_list_height=7
 " fugitive
 
 nmap <silent> <Leader>gs :Gstatus<CR>
-nmap <silent> <Leader>gc :Gcommit<CR>
-nmap <silent> <Leader>gC :Gcommit -a<CR>
+nmap <silent> <Leader>gc :Gcommit -v<CR>
+nmap <silent> <Leader>gC :Gcommit -a -v<CR>
 nmap <silent> <Leader>ga :Git add %<CR>
 nmap <silent> <Leader>gA :Git add -A .<CR>
 nmap <silent> <Leader>gp :Git push -u origin HEAD<CR>

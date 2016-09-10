@@ -51,6 +51,7 @@ call plug#begin()
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'vim-pandoc/vim-pandoc-after'
+    Plug 'junegunn/vim-easy-align'
     Plug 'groenewege/vim-less'
     Plug 'digitaltoad/vim-jade'
     Plug 'stephpy/vim-yaml'
@@ -427,6 +428,9 @@ let g:pandoc#syntax#codeblocks#embeds#langs=['python','cpp','html','go']
 let g:pandoc#folding#fdc=0
 let g:pandoc#formatting#mode='hA'
 let g:pandoc#folding#mode = 'stacked'
+
+" vim-easy-align
+vmap <silent> <Bar> :EasyAlign*<Bar><CR>
 
 " Neoterm
 let g:neoterm_size = 7

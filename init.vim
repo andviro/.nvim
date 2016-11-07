@@ -6,7 +6,7 @@ call plug#begin()
     Plug 'benekastah/neomake'
 
     " appearance
-    Plug 'andviro/vim-colors-solarized'
+    Plug 'iCyMind/NeoSolarized'
     Plug 'bling/vim-airline'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -25,7 +25,8 @@ call plug#begin()
     Plug 'AndrewRadev/splitjoin.vim'
     Plug 'easymotion/vim-easymotion'
     Plug 'fabi1cazenave/suckless.vim'
-
+    Plug 'kshenoy/vim-signature'
+    
     " snippets
     Plug 'sirver/ultisnips'
     Plug 'honza/vim-snippets'
@@ -153,10 +154,7 @@ set showcmd
 set wildmenu
 set background=dark
 set display+=lastline
-let g:solarized_termcolors = 16
-let g:solarized_visibility = "low"
-let g:solarized_contrast = "normal"
-colorscheme solarized
+colorscheme NeoSolarized
 "highlight NonText cterm=none ctermbg=none ctermfg=23
 "highlight SpecialKey cterm=none ctermbg=none ctermfg=23
 "

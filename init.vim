@@ -49,6 +49,7 @@ call plug#begin()
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/neoinclude.vim'
     "Plug 'zchee/deoplete-clang'
+    Plug 'Rip-Rip/clang_complete'
     Plug 'zchee/deoplete-jedi'
     Plug 'zchee/deoplete-go'
     Plug 'mtscout6/vim-cjsx'

@@ -45,7 +45,10 @@ call plug#begin()
     Plug 'kchmck/vim-coffee-script'
     Plug 'elzr/vim-json'
     Plug 'hynek/vim-python-pep8-indent'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
+    "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-clang'
+    Plug 'zchee/deoplete-jedi'
     Plug 'mtscout6/vim-cjsx'
     Plug 'leafgarland/typescript-vim'
     Plug 'amiorin/vim-fenced-code-blocks'
@@ -58,7 +61,7 @@ call plug#begin()
     Plug 'stephpy/vim-yaml'
     Plug 'chase/vim-ansible-yaml'
     Plug 'Chiel92/vim-autoformat'
-    Plug 'rdnetto/YCM-Generator', {'branch' : 'stable'}
+    "Plug 'rdnetto/YCM-Generator', {'branch' : 'stable'}
     Plug 'dylanaraps/taskrunner.nvim'
     Plug 'KabbAmine/zeavim.vim'
 call plug#end()
@@ -448,3 +451,6 @@ nmap gs <plug>(scratch-insert-reuse)
 " splitjoin
 let g:splitjoin_split_mapping = 'gS'
 let g:splitjoin_join_mapping  = 'gJ'
+
+" deoplete
+let g:deoplete#enable_at_startup = 1

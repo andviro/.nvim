@@ -47,8 +47,10 @@ call plug#begin()
     Plug 'hynek/vim-python-pep8-indent'
     "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-clang'
+    Plug 'Shougo/neoinclude.vim'
+    "Plug 'zchee/deoplete-clang'
     Plug 'zchee/deoplete-jedi'
+    Plug 'zchee/deoplete-go'
     Plug 'mtscout6/vim-cjsx'
     Plug 'leafgarland/typescript-vim'
     Plug 'amiorin/vim-fenced-code-blocks'
@@ -454,3 +456,8 @@ let g:splitjoin_join_mapping  = 'gJ'
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+"let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.5/lib/libclang.so.1"
+"let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.5/include/"

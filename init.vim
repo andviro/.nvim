@@ -421,6 +421,8 @@ let g:ctrlp_max_files = 0
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_frontmatter=1
 
+let g:pandoc#formatting#textwidth=100
+let g:pandoc#modules#disabled = ["folding"]
 let g:pandoc#after#modules#enabled = ["ultisnips"]
 let g:pandoc#syntax#codeblocks#embeds#langs=['python','cpp','html','go']
 let g:pandoc#folding#fdc=0

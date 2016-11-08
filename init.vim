@@ -198,6 +198,7 @@ nnoremap <BS> <C-O>
 nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <silent> <C-h> :bprev<CR>
 nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
+map <silent> <CR> <C-]>
 
 " Neovim terminal
 if has("nvim")
@@ -351,8 +352,6 @@ let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 let g:ycm_autoclose_preview_window_after_completion = 1
 inoremap <expr><c-j>  pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr><c-k>  pumvisible() ? "\<C-p>" : "\<C-k>"
-"nnoremap <silent> <CR> :YcmCompleter GoTo<CR>
-"nnoremap <silent> K :YcmCompleter GetDoc<CR>
 let g:UltiSnipsExpandTrigger="<C-L>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"

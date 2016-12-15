@@ -6,7 +6,7 @@ call plug#begin()
     Plug 'benekastah/neomake'
 
     " appearance
-    Plug 'iCyMind/NeoSolarized'
+    Plug 'andviro/NeoSolarized'
     Plug 'bling/vim-airline'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -154,6 +154,8 @@ set showcmd
 set wildmenu
 set background=dark
 set display+=lastline
+let g:neosolarized_contrast='normal'
+let g:neosolarized_visibility='low'
 colorscheme NeoSolarized
 "highlight NonText cterm=none ctermbg=none ctermfg=23
 "highlight SpecialKey cterm=none ctermbg=none ctermfg=23
@@ -192,6 +194,7 @@ nnoremap <BS> <C-O>
 nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <silent> <C-h> :bprev<CR>
 nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
+nnoremap <silent> <CR> <C-]>
 
 " Neovim terminal
 if has("nvim")

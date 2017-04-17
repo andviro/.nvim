@@ -200,7 +200,7 @@ nnoremap <BS> <C-O>
 nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <silent> <C-h> :bprev<CR>
 nnoremap <silent> <C-W>q :bprev <BAR> bdelete #<CR>
-nnoremap <silent> <CR> <C-]>
+"nnoremap <silent> <CR> <C-]>
 
 " Neovim terminal
 if has("nvim")
@@ -445,6 +445,7 @@ let g:neoterm_size = 7
 " vim-go
 "let g:go_fmt_command = "goimports"
 let g:go_def_mapping_enabled = 0
+let g:go_term_enabled = 0
 
 " scratch
 let g:scratch_no_mappings = 1

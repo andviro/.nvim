@@ -1,1 +1,1 @@
-nnoremap <buffer> <CR> <CR>
+"nnoremap <buffer> <CR> <CR>
